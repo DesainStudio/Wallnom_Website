@@ -1,0 +1,24 @@
+* {
+    user-select: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body {
+    background-color: #252525;
+    color: #424242;
+    padding: 0;
+    margin: 0;
+}
+a {
+    color: #3a539b;
+    text-decoration: none;
+    margin: 3px;
+    padding: 10px;
+    background-color: transparent;
+    border: 2px solid transparent;
+    margin-right: 40px;
+    font-size: larger;
+}
+a:hover {
+    border: 2px solid #3a539b;
+    border-radius: 20px;
+}

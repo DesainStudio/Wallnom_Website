@@ -1,0 +1,11 @@
+.header {
+    height: 100px;
+    background-color: transparent;
+}
+.row {
+    margin: 5px;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
