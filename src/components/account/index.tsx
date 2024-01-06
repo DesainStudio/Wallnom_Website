@@ -9,32 +9,19 @@ export function Account() {
   const handleFormSubmit = async (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault(); // Verhindert das Standardverhalten des Links (Navigieren)
 
-    // Beispiel-URL für einen Server-Endpunkt
-    const apiUrl = `http://37.221.93.114:25299/account`;
-
-    // Daten, die im POST-Body gesendet werden
-    const postData = {
-      username: username,
-      email: email,
-      password: password,
-    };
+    // Beispiel-URL für einen Server-Endpunkt mit GET-Anfrage
+    const apiUrl = `http://37.221.93.114:25299/account?username=${username}&email=${email}&password=${password}`;
 
     // Anfrage an den Server senden
     try {
       const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(postData),
+        method: 'GET', // Änderung auf GET
       });
 
       // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200-299)
       if (response.ok) {
         const data = await response.json();
         if (data === 'next') {
-          // Hier könntest du die notwendigen Aktionen durchführen, wenn die Antwort 'next' ist
-          // Zum Beispiel Cookies setzen
           const setCookie = (cName: string, cValue: string, expDays: number) => {
             const date = new Date();
             date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
