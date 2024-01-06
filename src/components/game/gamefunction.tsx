@@ -5,7 +5,7 @@ export function WGame () {
     
     useEffect(() => {
         const fieldElements = document.getElementsByClassName('place');
-        async function handlePlaceClick(event: Event): void {
+        async function handlePlaceClick(event: Event) {
             
         }
     });

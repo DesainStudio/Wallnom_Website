@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Cookie } from "../../components/cookies/index";
-import { WGame } from "../../components/game/gameFunction";
 
 export default function Game () {
 
@@ -13,7 +12,6 @@ export default function Game () {
 
   return (
     <>
-    <WGame />
     <Cookie />
     </>
   );
