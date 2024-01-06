@@ -10,27 +10,40 @@ export function Account() {
     event.preventDefault(); // Verhindert das Standardverhalten des Links (Navigieren)
 
     // Beispiel-URL für einen Server-Endpunkt
-    const apiUrl = `http://37.221.93.114:25299/account?username=${username}&email=${email}&password=${password}`;
+    const apiUrl = `http://37.221.93.114:25299/account`;
+
+    // Daten, die im POST-Body gesendet werden
+    const postData = {
+      username: username,
+      email: email,
+      password: password,
+    };
 
     // Anfrage an den Server senden
     try {
       const response = await fetch(apiUrl, {
-        method: 'POST', 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData),
       });
 
       // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200-299)
       if (response.ok) {
         const data = await response.json();
         if (data === 'next') {
-            const setCookie = (cName: string, cValue: string, expDays: number) => {
-                const date = new Date();
-                date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
-                const expires = "expires=" + date.toUTCString();
-                document.cookie = `${cName}=${cValue}; ${expires}; path=/`;
-              };
-            setCookie("username", username, 30);
-            setCookie("email", email, 30);
-            setCookie('autoLogin', 'true', 30);
+          // Hier könntest du die notwendigen Aktionen durchführen, wenn die Antwort 'next' ist
+          // Zum Beispiel Cookies setzen
+          const setCookie = (cName: string, cValue: string, expDays: number) => {
+            const date = new Date();
+            date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = `${cName}=${cValue}; ${expires}; path=/`;
+          };
+          setCookie("username", username, 30);
+          setCookie("email", email, 30);
+          setCookie('autoLogin', 'true', 30);
         }
         console.log('Daten vom Server erhalten:', data);
       } else {
