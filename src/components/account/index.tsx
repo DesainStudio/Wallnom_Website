@@ -10,21 +10,28 @@ export function Account() {
     event.preventDefault(); // Verhindert das Standardverhalten des Links (Navigieren)
 
     // Beispiel-URL für einen Server-Endpunkt
-    const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
+    const apiUrl = `http://37.221.93.114:25299/account?username=${username}&email=${email}&password=${password}`;
 
     // Anfrage an den Server senden
     try {
       const response = await fetch(apiUrl, {
-        method: 'POST', // Beispiel: Verwende POST anstelle von GET
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, email, password }),
+        method: 'POST', 
       });
 
       // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200-299)
       if (response.ok) {
         const data = await response.json();
+        if (data === 'next') {
+            const setCookie = (cName: string, cValue: string, expDays: number) => {
+                const date = new Date();
+                date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
+                const expires = "expires=" + date.toUTCString();
+                document.cookie = `${cName}=${cValue}; ${expires}; path=/`;
+              };
+            setCookie("username", username, 30);
+            setCookie("email", email, 30);
+            setCookie('autoLogin', 'true', 30);
+        }
         console.log('Daten vom Server erhalten:', data);
       } else {
         console.error('Fehler beim Abrufen der Daten:', response.statusText);
