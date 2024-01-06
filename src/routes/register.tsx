@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Header } from '../components/header/header';
 import { Cookie } from "../components/cookies/index";
-import { Main } from '../components/main/index';
-import { Account } from '../components/account/index';
+import { RWindow } from '../components/register/index';
 
-export default function Website() {
+export default function Register() {
 
   function changeTilte(name: string) {
     useEffect(() => {
@@ -15,8 +13,7 @@ export default function Website() {
 
   return (
     <>
-    <Header />
-    <Account />
+    <RWindow />
     <Cookie />
     </>
   );

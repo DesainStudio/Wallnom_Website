@@ -1,15 +1,18 @@
 * {
-    user-select: none;
+
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 body {
-    background-color: #252525;
-    color: #424242;
+    background-color: #18222d;
+    color: white;
     padding: 0;
     margin: 0;
+    overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 a {
-    color: #3a539b;
+    color: white;
     text-decoration: none;
     margin: 3px;
     padding: 10px;
@@ -19,6 +22,6 @@ a {
     font-size: larger;
 }
 a:hover {
-    border: 2px solid #3a539b;
+    border: 2px solid #5f77be;
     border-radius: 20px;
 }
