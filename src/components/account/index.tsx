@@ -20,7 +20,7 @@ export function Account() {
       });
 
       // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200-299)
-      if (response.ok) {
+      if (response) {
         const data = await response.json();
         if (data === 'next') {
           const setCookie = (cName: string, cValue: string, expDays: number) => {
