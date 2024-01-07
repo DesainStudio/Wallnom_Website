@@ -33,6 +33,8 @@ export function Account() {
       setCookie("email", email, 30);
       setCookie('autoLogin', 'true', 30);
 
+      console.log(response)
+
       console.log('Anfrage erfolgreich im "no-cors"-Modus durchgeführt');
     } catch (error) {
       console.error('Fehler beim Senden der Anfrage:', error);
