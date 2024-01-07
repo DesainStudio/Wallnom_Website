@@ -9,33 +9,44 @@ export function Account() {
   const handleFormSubmit = async (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault(); // Verhindert das Standardverhalten des Links (Navigieren)
 
-    // Beispiel-URL für einen Server-Endpunkt mit GET-Anfrage
-    const apiUrl = `http://37.221.93.114:25299/account?username=${username}&email=${email}&password=${password}`;
+    // Beispiel-URL für einen Server-Endpunkt mit POST-Anfrage
+    const apiUrl = 'http://37.221.93.114:25299/account';
+
+    // Daten für den POST-Request
+    const postData = {
+      username: username,
+      email: email,
+      password: password,
+    };
 
     // Anfrage an den Server senden
     try {
       const response = await fetch(apiUrl, {
-        method: 'GET', // Änderung auf GET
-        mode: 'no-cors'
+        method: 'POST', // Änderung auf POST
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData),
       });
 
-      // Beachte: Du kannst nicht auf die Antwort im JSON-Format zugreifen.
-      // Die Bedingung (response) wird immer erfüllt, unabhängig von der Antwort.
-
-      // Führe die gewünschten Aktionen ohne Zugriff auf die Antwort durch
-      const setCookie = (cName: string, cValue: string, expDays: number) => {
-        const date = new Date();
-        date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
-        const expires = "expires=" + date.toUTCString();
-        document.cookie = `${cName}=${cValue}; ${expires}; path=/`;
-      };
-      setCookie("username", username, 30);
-      setCookie("email", email, 30);
-      setCookie('autoLogin', 'true', 30);
-
-      console.log(response)
-
-      console.log('Anfrage erfolgreich im "no-cors"-Modus durchgeführt');
+      // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200-299)
+      if (response.ok) {
+        const data = await response.json();
+        if (data === 'next') {
+          const setCookie = (cName: string, cValue: string, expDays: number) => {
+            const date = new Date();
+            date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = `${cName}=${cValue}; ${expires}; path=/`;
+          };
+          setCookie("username", username, 30);
+          setCookie("email", email, 30);
+          setCookie('autoLogin', 'true', 30);
+        }
+        console.log('Daten vom Server erhalten:', data);
+      } else {
+        console.error('Fehler beim Abrufen der Daten:', response.statusText);
+      }
     } catch (error) {
       console.error('Fehler beim Senden der Anfrage:', error);
     }
