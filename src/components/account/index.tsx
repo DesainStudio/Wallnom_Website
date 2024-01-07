@@ -16,6 +16,7 @@ export function Account() {
     try {
       const response = await fetch(apiUrl, {
         method: 'GET', // Änderung auf GET
+        mode: 'no-cors'
       });
 
       // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200-299)
