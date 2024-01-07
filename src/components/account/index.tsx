@@ -19,22 +19,21 @@ export function Account() {
         mode: 'no-cors'
       });
 
-      // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200-299)
-      if (response) {
-        const data = await response.json();
-        if (data === 'next') {
-          const setCookie = (cName: string, cValue: string, expDays: number) => {
-            const date = new Date();
-            date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
-            const expires = "expires=" + date.toUTCString();
-            document.cookie = `${cName}=${cValue}; ${expires}; path=/`;
-          };
-          setCookie("username", username, 30);
-          setCookie("email", email, 30);
-          setCookie('autoLogin', 'true', 30);
-        }
-        console.log('Daten vom Server erhalten:', data);
-      }
+      // Beachte: Du kannst nicht auf die Antwort im JSON-Format zugreifen.
+      // Die Bedingung (response) wird immer erfüllt, unabhängig von der Antwort.
+
+      // Führe die gewünschten Aktionen ohne Zugriff auf die Antwort durch
+      const setCookie = (cName: string, cValue: string, expDays: number) => {
+        const date = new Date();
+        date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = `${cName}=${cValue}; ${expires}; path=/`;
+      };
+      setCookie("username", username, 30);
+      setCookie("email", email, 30);
+      setCookie('autoLogin', 'true', 30);
+
+      console.log('Anfrage erfolgreich im "no-cors"-Modus durchgeführt');
     } catch (error) {
       console.error('Fehler beim Senden der Anfrage:', error);
     }
