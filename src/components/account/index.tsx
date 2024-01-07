@@ -35,7 +35,7 @@ export function Account() {
         }
         console.log('Daten vom Server erhalten:', data);
       } else {
-        console.error('Fehler beim Abrufen der Daten:', response.text());
+        console.error('Fehler beim Abrufen der Daten:', response.text);
       }
     } catch (error) {
       console.error('Fehler beim Senden der Anfrage:', error);
