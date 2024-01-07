@@ -16,7 +16,7 @@ export function Account() {
     try {
       const response = await fetch(apiUrl, {
         method: 'GET', // Änderung auf GET
-        mode: 'same-origin'
+        mode: 'no-cors'
       });
 
       // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200-299)
@@ -34,8 +34,6 @@ export function Account() {
           setCookie('autoLogin', 'true', 30);
         }
         console.log('Daten vom Server erhalten:', data);
-      } else {
-        console.error('Fehler beim Abrufen der Daten:', response.text);
       }
     } catch (error) {
       console.error('Fehler beim Senden der Anfrage:', error);
