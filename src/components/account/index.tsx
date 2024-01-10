@@ -17,14 +17,16 @@ export function Account() {
     };
 
     // Beispiel-URL für einen Server-Endpunkt mit POST-Anfrage
-    const apiUrl = `http://37.221.93.114:25299/account?username=${postData.username}&email=${postData.email}&password=${postData.password}`;
+    const apiUrl = `http://37.221.93.114:25299/account`;
 
     // Anfrage an den Server senden
     try {
       const response = await fetch(apiUrl, {
         method: 'GET', // Änderung auf POST
         headers: {
-          'Content-Type': 'application/json',
+          'username': postData.username,
+          'email': postData.email,
+          'password': postData.password
         },
         body: JSON.stringify(postData),
       });
