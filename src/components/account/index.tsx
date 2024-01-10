@@ -9,15 +9,15 @@ export function Account() {
   const handleFormSubmit = async (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault(); // Verhindert das Standardverhalten des Links (Navigieren)
 
-    // Beispiel-URL für einen Server-Endpunkt mit POST-Anfrage
-    const apiUrl = `http://37.221.93.114:25299/account?username=${postData.username}&email=${postData.email}&password=${postData.password}`;
-
     // Daten für den POST-Request
     const postData = {
-      username: username,
-      email: email,
-      password: password,
+        username: username,
+        email: email,
+        password: password,
     };
+
+    // Beispiel-URL für einen Server-Endpunkt mit POST-Anfrage
+    const apiUrl = `http://37.221.93.114:25299/account?username=${postData.username}&email=${postData.email}&password=${postData.password}`;
 
     // Anfrage an den Server senden
     try {
