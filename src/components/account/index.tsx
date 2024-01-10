@@ -9,22 +9,14 @@ export function Account() {
   const handleFormSubmit = async (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
   
-    const postData = {
-      username: username,
-      email: email,
-      password: password,
-    };
-    console.log(JSON.stringify(postData))
-  
-    const apiUrl = `http://37.221.93.114:25299/account`;
+    const apiUrl = `http://37.221.93.114:25299/account?username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
   
     try {
       const response = await fetch(apiUrl, {
-        method: 'POST', // Ändere auf POST
+        method: 'GET', // GET-Anfrage beibehalten
         headers: {
-          'Content-Type': 'application/json', // Setze den Content-Type-Header
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(postData),
       });
   
       if (response.ok) {
