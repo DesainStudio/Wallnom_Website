@@ -10,7 +10,7 @@ export function Account() {
     event.preventDefault(); // Verhindert das Standardverhalten des Links (Navigieren)
 
     // Beispiel-URL für einen Server-Endpunkt mit POST-Anfrage
-    const apiUrl = 'http://37.221.93.114:25299/account';
+    const apiUrl = `http://37.221.93.114:25299/account?username=${postData.username}&email=${postData.email}&password=${postData.password}`;
 
     // Daten für den POST-Request
     const postData = {
