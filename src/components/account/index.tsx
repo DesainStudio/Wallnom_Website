@@ -13,7 +13,7 @@ export function Account() {
   
     try {
       const response = await fetch(apiUrl, {
-        method: 'GET', // GET-Anfrage beibehalten
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -22,7 +22,7 @@ export function Account() {
       if (response.ok) {
         const data = await response.json();
         if (data === 'next') {
-          // ... (dein Code für Cookies setzen)
+          console.log('erfolg')
         }
         console.log('Daten vom Server erhalten:', data);
       } else {
