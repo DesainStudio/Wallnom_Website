@@ -14,13 +14,10 @@ export function Account() {
     try {
       const response = await fetch(apiUrl, {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
       });
   
       if (response.ok) {
-        const data = await response.json();
+        const data = await response.text();
         if (data === 'next') {
           console.log('erfolg')
         }
