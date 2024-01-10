@@ -7,43 +7,30 @@ export function Account() {
   const [password, setPassword] = useState('');
 
   const handleFormSubmit = async (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    event.preventDefault(); // Verhindert das Standardverhalten des Links (Navigieren)
-
-    // Daten für den POST-Request
+    event.preventDefault();
+  
     const postData = {
-        username: username,
-        email: email,
-        password: password,
+      username: username,
+      email: email,
+      password: password,
     };
-
-    // Beispiel-URL für einen Server-Endpunkt mit POST-Anfrage
+    console.log(JSON.stringify(postData))
+  
     const apiUrl = `http://37.221.93.114:25299/account`;
-
-    // Anfrage an den Server senden
+  
     try {
       const response = await fetch(apiUrl, {
-        method: 'GET', // Änderung auf POST
+        method: 'POST', // Ändere auf POST
         headers: {
-          'username': postData.username,
-          'email': postData.email,
-          'password': postData.password
+          'Content-Type': 'application/json', // Setze den Content-Type-Header
         },
         body: JSON.stringify(postData),
       });
-
-      // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200-299)
+  
       if (response.ok) {
         const data = await response.json();
         if (data === 'next') {
-          const setCookie = (cName: string, cValue: string, expDays: number) => {
-            const date = new Date();
-            date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
-            const expires = "expires=" + date.toUTCString();
-            document.cookie = `${cName}=${cValue}; ${expires}; path=/`;
-          };
-          setCookie("username", username, 30);
-          setCookie("email", email, 30);
-          setCookie('autoLogin', 'true', 30);
+          // ... (dein Code für Cookies setzen)
         }
         console.log('Daten vom Server erhalten:', data);
       } else {
