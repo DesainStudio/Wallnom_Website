@@ -22,7 +22,7 @@ export function Account() {
     // Anfrage an den Server senden
     try {
       const response = await fetch(apiUrl, {
-        method: 'POST', // Änderung auf POST
+        method: 'GET', // Änderung auf POST
         headers: {
           'Content-Type': 'application/json',
         },
