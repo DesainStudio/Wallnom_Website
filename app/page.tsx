@@ -1,5 +1,5 @@
-export const MainPage = () => {
-    return ( "Test" );
+export default function Home() {
+    return(
+        <h1>home</h1>
+    )
 }
- 
-export default MainPage;
