@@ -1,6 +1,0 @@
-<a href="">Karkade</a>
-          <a href="">Whatsapp</a>
-          <a href="">Tiktok</a>
-          <a href="">Youtube</a>
-          <a href="">Instagramm</a>
-          <a href="">Twitter</a>
